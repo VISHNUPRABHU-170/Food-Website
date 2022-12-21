@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" type = "img/png"  href="https://bit.ly/38h7zvL">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <title>FOOD CITY</title>
+  <style media="screen">
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: "Helvetica", monospace;
+      scroll-behavior: smooth;
+    }
+
+    .section {
+      clear: both;
+      display: block;
+      opacity: 1;
+      transition: opacity 2s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+    }
+
+    .header {
+      border: 3px solid #333;
+      background-image: linear-gradient(#D2691E, #FF8C00, #D2691E);
+    }
+    .header:hover {
+      box-shadow: 0px 0px 25px 10px black;
+    }
+
+    #home_internal_link {
+      position: relative;
+      top: -85px;
+    }
+
+    #menu_internal_link {
+      position: relative;
+      top: -85px;
+    }
+
+    #reservation_internal_link {
+      position: relative;
+      top: -85px;
+    }
+
+    #contact_internal_link {
+      position: relative;
+      top: -85px;
+    }
+
+    body {
+      background-image: url("https://i.ibb.co/CmSPw6t/image-2.png");
+      background-size: 100%;
+      background-position: 0 100vh;
+    }
+
+    .messages_div{
+      position: absolute;
+      top: calc(85px + 2vh);
+      z-index: 1;
+      width: 100%;
+    }
+    .message_text{
+      text-align: center;
+      width: 90%;
+      padding-top: 2vh;
+      padding-bottom: 2vh;
+      max-width: 600px;
+      background-color: #228B22;
+      border: 5px solid #333;
+      border-radius: 10px;
+      color: black;
+      margin: 0 auto;
+    }
+    @media (min-width: 1100px) {
+      .header {
+        width: 40%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 5vh;
+        padding: 10px 0px;
+      }
+
+      .nav_bar_back {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        height: 75px;
+        background-color: #333;
+        z-index: 14;
+      }
+
+      .nav_bar_front {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        height: 75px;
+        display: flex;
+        flex-direction: row;
+        background-color: #333;
+        z-index: 14;
+        left: -100%;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle {
+        flex: 1;
+        height: 100%;
+        padding-left: 25px;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_logo {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_logo img {
+        height: 60px;
+        border-radius: 100%;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_logo img:hover {
+        box-shadow: 0px 0px 10px 2px orange;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_menu_toggle {
+        display: none;
+      }
+      .nav_bar_front #nav_links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      .nav_bar_front #nav_links div {
+        height: 100%;
+      }
+      .nav_bar_front #nav_links div a {
+        height: 100%;
+        padding: 0px 25px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+      }
+      .nav_bar_front #nav_links div a:visited {
+        color: white;
+      }
+      .nav_bar_front #nav_links div a:active {
+        color: white;
+      }
+      .nav_bar_front #nav_links div a:link {
+        color: white;
+      }
+      .nav_bar_front #nav_links div a:hover {
+        color: white;
+        background-color: black;
+      }
+
+      .progress_bar_back {
+        position: fixed;
+        top: 75px;
+        height: 10px;
+        width: 100%;
+        background-color: gray;
+        z-index: 13;
+        box-shadow: 0 0px 20px 10px gray;
+      }
+
+      #progress_bar_front {
+        position: fixed;
+        top: 75px;
+        height: 10px;
+        width: 0%;
+        background-color: black;
+        z-index: 13;
+      }
+
+      .home {
+        width: 100%;
+        height: calc(100vh - (75px + 10px));
+        margin-top: 85px;
+      }
+      .home img {
+        width: 100%;
+        height: calc(100vh - (75px + 10px));
+        position: absolute;
+        object-fit: cover;
+        z-index: 1;
+      }
+      .home .center_text {
+        position: absolute;
+        width: 100%;
+        height: calc(100vh - (75px + 10px));
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .home .center_text #wallpaper_image {
+        width: 0px;
+        height: 0px;
+        border-radius: 100%;
+        animation-name: logo_animation;
+        animation-duration: 4s;
+        animation-delay: 0s;
+      }
+      @keyframes logo_animation {
+        0% {
+          width: 0px;
+          height: 0px;
+        }
+        20% {
+          width: 0px;
+          height: 0px;
+          box-shadow: 0px 0px 30px 15px orange;
+        }
+        80% {
+          width: 450px;
+          height: 450px;
+          box-shadow: 0px 0px 30px 15px orange;
+        }
+        90% {
+          width: 450px;
+          height: 450px;
+          box-shadow: 0px 0px 30px 15px orange;
+        }
+        100% {
+          width: 0px;
+          height: 0px;
+          box-shadow: 0px 0px 30px 15px orange;
+        }
+      }
+      .home .center_text #fire {
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        top: calc(42vh);
+        animation-name: fire_animation;
+        animation-duration: 4s;
+        animation-delay: 0s;
+      }
+      @keyframes fire_animation {
+        0% {
+          width: 0px;
+          height: 0px;
+        }
+        20% {
+          width: 0px;
+          height: 0px;
+        }
+        90% {
+          width: 500px;
+          height: 300px;
+          top: calc(85vh - 300px);
+        }
+        95% {
+          width: 0px;
+          height: 0px;
+          top: calc(42vh);
+        }
+        100% {
+          width: 0px;
+          height: 0px;
+          top: calc(42vh);
+        }
+      }
+      .home .center_text .typewriter-text {
+        display: inline-block;
+        overflow: hidden;
+        letter-spacing: 0.1vw;
+        /*36 is the length of the string*/
+        animation: typing 3s steps(40, end), blink 0.75s step-end 4;
+        white-space: nowrap;
+        font-size: 6vw;
+        color: orange;
+        font-weight: bold;
+        box-shadow: 0.3vw 0px 0px 0px transparent;
+        background: -webkit-linear-gradient(#FFA500, #D2691E);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: black;
+        box-sizing: border-box;
+        animation-delay: 5s;
+        width: 0%;
+      }
+      @keyframes typing {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes blink {
+        from, to {
+          box-shadow: 0.3vw 0px 0px 0px transparent;
+        }
+        50% {
+          box-shadow: 0.3vw 0px 0px 0px orange;
+        }
+      }
+      .home .dots {
+        z-index: 5;
+        position: absolute;
+        width: 100%;
+        height: calc(95vh - (75px + 10px));
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .home .dots button {
+        margin: 0px 10px;
+        width: 15px;
+        height: 15px;
+        border: 2px solid black;
+        padding: 5px;
+        border-radius: 100%;
+        background-color: white;
+      }
+      .home .dots button:hover {
+        background-color: #333;
+      }
+
+      .menu {
+        padding: 5vh;
+      }
+      .menu .menu_flexbox {
+        padding-top: 60px;
+        width: 90%;
+        max-width: 1600px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: auto;
+        justify-content: center;
+      }
+      .menu .menu_flexbox .menu_item_flex_item {
+        background-color: #333;
+        width: 400px;
+        margin: 5px;
+      }
+      .menu .menu_flexbox .menu_item_flex_item img {
+        width: 392px;
+        height: calc(100% - 8px);
+        margin: 4px;
+      }
+      .menu .menu_flexbox .menu_item_flex_item img:hover {
+        margin: 0px;
+        border: 4px solid orange;
+      }
+
+      .reservation {
+        padding: 5vh;
+      }
+      .reservation .reservation_form {
+        width: 700px;
+        padding: 50px;
+        margin: 0 auto;
+        margin-top: 3vh;
+        border: 4px solid #333;
+        display: flex;
+        flex-direction: column;
+        background-image: linear-gradient(black, #333, black);
+        color: white;
+      }
+      .reservation .reservation_form h1 {
+        margin: 0 auto;
+        margin-bottom: 50px;
+      }
+      .reservation .reservation_form .form_group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .reservation .reservation_form .form_group label {
+        flex: 1;
+        font-size: 20px;
+      }
+      .reservation .reservation_form .form_group input, .reservation .reservation_form .form_group textarea {
+        width: calc(65% - 12px *2 - 1px *2 );
+        height: 30px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        font-size: 18px;
+        font-family: inherit;
+        font-size: inherit;
+        float: left;
+      }
+      .reservation .reservation_form .form_group input:hover, .reservation .reservation_form .form_group textarea:hover {
+        box-shadow: 0px 0px 15px 5px gray;
+        cursor: pointer;
+      }
+      .reservation .reservation_form .form_group textarea {
+        height: 200px;
+      }
+      .reservation .reservation_form .form_group .input_date, .reservation .reservation_form .form_group .input_time {
+        width: 65%;
+        display: flex;
+        flex-direction: row;
+      }
+      .reservation .reservation_form .form_group .input_date select, .reservation .reservation_form .form_group .input_time select {
+        flex: 1;
+        height: 40px;
+        border: 1px solid #ccc;
+        font-size: 15px;
+        padding: 5px;
+      }
+      .reservation .reservation_form .form_group .input_date select:hover, .reservation .reservation_form .form_group .input_time select:hover {
+        box-shadow: 0px 0px 15px 5px gray;
+        cursor: pointer;
+      }
+      .reservation .reservation_form .form_group .input_date #delivery_day, .reservation .reservation_form .form_group .input_time #delivery_day {
+        margin: 0px 20px;
+      }
+      .reservation .reservation_form .form_group .input_date #delivery_minute, .reservation .reservation_form .form_group .input_time #delivery_minute {
+        margin: 0px 20px;
+      }
+      .reservation .reservation_form .button_div {
+        margin: 0 auto;
+        margin-top: 50px;
+      }
+      .reservation .reservation_form .button_div button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 50px;
+        padding: 20px;
+        border: 2px solid black;
+        font-size: 30px;
+      }
+      .reservation .reservation_form .button_div button:hover {
+        box-shadow: 0px 0px 15px 5px gray;
+        cursor: pointer;
+      }
+
+      .contact {
+        padding: 5vh;
+        padding-bottom: 20vh;
+      }
+      .contact .contact_container {
+        width: calc(70% - 50px);
+        padding: 40px;
+        margin: 0 auto;
+        margin-top: 5vh;
+        background-color: #333;
+        color: white;
+        border: 5px solid black;
+      }
+      .contact .contact_container h1 {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .contact .contact_container .contact_content {
+        display: flex;
+        flex-direction: row;
+      }
+      .contact .contact_container .contact_content .info_hours {
+        display: flex;
+        flex-direction: column;
+      }
+      .contact .contact_container .contact_content .info_hours .info {
+        flex: 1;
+      }
+      .contact .contact_container .contact_content .info_hours .info p {
+        margin-bottom: 20px;
+      }
+      .contact .contact_container .contact_content .info_hours .hours p {
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .contact .contact_container .contact_content .info_hours .hours table th, .contact .contact_container .contact_content .info_hours .hours table td {
+        padding: 10px 0px;
+        text-align: left;
+      }
+      .contact .contact_container .contact_content .info_hours .hours table th {
+        padding-right: 40px;
+      }
+      .contact .contact_container .contact_content .maps {
+        flex: 1;
+        margin-left: 40px;
+      }
+      .contact .contact_container .contact_content .maps iframe {
+        width: 100%;
+        height: 500px;
+        border: none;
+      }
+
+      .final {
+        width: calc(100% - 60px);
+        background-color: black;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #FF8C00;
+      }
+      .final p {
+        margin-bottom: 20px;
+        font-size: 40px;
+      }
+      .final .jinkuaizi p {
+        text-align: center;
+        font-size: 15px;
+        color: #FF8C00;
+      }
+      .final .jinkuaizi p a:hover {
+        color: #FF8C00;
+      }
+      .final .jinkuaizi p a:visited {
+        color: #FF8C00;
+      }
+      .final .jinkuaizi p a:active {
+        color: #FF8C00;
+      }
+      .final .jinkuaizi p a:link {
+        color: #FF8C00;
+      }
+    }
+    @media (max-width: 1100px) {
+      .header {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 5vh;
+        padding: 10px 0px;
+      }
+
+      .nav_bar_back {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        height: 75px;
+        background-color: #333;
+        z-index: 5;
+      }
+
+      .nav_bar_front {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        height: 75px;
+        background-color: #333;
+        display: flex;
+        flex-direction: column;
+        z-index: 5;
+        left: -100%;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        padding-left: 25px;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_logo {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_logo img {
+        height: 60px;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_menu_toggle {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_menu_toggle img {
+        height: 75px;
+      }
+      .nav_bar_front .nav_bar_logo_and_toggle .nav_menu_toggle img:hover {
+        cursor: pointer;
+      }
+      .nav_bar_front #nav_links {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #333;
+        padding-bottom: 2vh;
+      }
+      .nav_bar_front #nav_links div {
+        width: 100%;
+        height: 100%;
+        font-size: 2.5vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav_bar_front #nav_links div a {
+        width: 100%;
+        padding: 5px 0px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+      }
+      .nav_bar_front #nav_links div a:visited {
+        color: white;
+      }
+      .nav_bar_front #nav_links div a:hover {
+        color: white;
+        background-color: black;
+      }
+      .nav_bar_front #nav_links div a:active {
+        color: white;
+      }
+      .nav_bar_front #nav_links div a:link {
+        color: white;
+      }
+
+      .progress_bar_back {
+        position: fixed;
+        top: 75px;
+        height: 10px;
+        width: 100%;
+        background-color: gray;
+        z-index: 4;
+        box-shadow: 0 0px 20px 10px gray;
+      }
+
+      #progress_bar_front {
+        position: fixed;
+        top: 75px;
+        height: 10px;
+        width: 0%;
+        background-color: black;
+        z-index: 4;
+      }
+
+      .home {
+        width: 100%;
+        height: calc(100vh - (75px + 10px));
+        margin-top: 85px;
+      }
+      .home img {
+        width: 100%;
+        height: calc(100vh - (75px + 10px));
+        position: absolute;
+        object-fit: cover;
+        z-index: 1;
+      }
+      .home .center_text {
+        position: absolute;
+        width: 100%;
+        height: calc(80vh - (75px + 10px));
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .home .center_text #wallpaper_image {
+        width: 0px;
+        height: 0px;
+        border-radius: 100%;
+        animation-name: logo_animation;
+        animation-duration: 4s;
+        animation-delay: 0s;
+      }
+      @keyframes logo_animation {
+        0% {
+          width: 0px;
+          height: 0px;
+        }
+        20% {
+          width: 0px;
+          height: 0px;
+          box-shadow: 0px 0px 30px 15px orange;
+        }
+        80% {
+          width: 250px;
+          height: 250px;
+          box-shadow: 0px 0px 30px 15px orange;
+        }
+        90% {
+          width: 250px;
+          height: 250px;
+          box-shadow: 0px 0px 30px 15px orange;
+        }
+        100% {
+          width: 0px;
+          height: 0px;
+          box-shadow: 0px 0px 30px 15px orange;
+        }
+      }
+      .home .center_text #fire {
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        top: calc((80vh - (75px + 10px))/2);
+        animation-name: fire_animation;
+        animation-duration: 4s;
+        animation-delay: 0s;
+      }
+      @keyframes fire_animation {
+        0% {
+          width: 0px;
+          height: 0px;
+        }
+        20% {
+          width: 0px;
+          height: 0px;
+        }
+        90% {
+          width: 250px;
+          height: 100px;
+          top: calc(50vh - 50px);
+        }
+        95% {
+          width: 0px;
+          height: 0px;
+          top: calc(42vh);
+        }
+        100% {
+          width: 0px;
+          height: 0px;
+          top: calc(42vh);
+        }
+      }
+      .home .center_text .typewriter-text {
+        display: inline-block;
+        overflow: hidden;
+        letter-spacing: 0.1vw;
+        text-align: center;
+        font-size: 15vw;
+        color: orange;
+        font-weight: bold;
+        background: -webkit-linear-gradient(#FFA500, #D2691E);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+        box-sizing: border-box;
+        width: 100%;
+        animation: typing;
+        animation-duration: 5s;
+        animation-delay: 0s;
+      }
+      @keyframes typing {
+        0% {
+          width: 0%;
+        }
+        90% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+      .home .dots {
+        z-index: 2;
+        position: absolute;
+        width: 100%;
+        height: calc(95vh - (75px + 10px));
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .home .dots button {
+        margin: 0px 10px;
+        width: 15px;
+        height: 15px;
+        border: 2px solid white;
+        border-radius: 100%;
+        background-color: white;
+        border: 2px solid black;
+        padding: 5px;
+      }
+      .home .dots button:hover {
+        background-color: #333;
+      }
+
+      .menu {
+        padding: 2vw;
+        padding-top: 4vh;
+      }
+      .menu .menu_flexbox {
+        padding-top: 4vh;
+        width: 100%;
+        max-width: 1600px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: auto;
+        justify-content: center;
+      }
+      .menu .menu_flexbox .menu_item_flex_item {
+        background-color: #333;
+        width: min(400px - 8px, calc(100% - 8px));
+        margin: 5px;
+      }
+      .menu .menu_flexbox .menu_item_flex_item img {
+        width: min(400px - 8px, calc(100% - 8px));
+        height: min(400px - 8px, calc(100% - 8px));
+        margin: 4px;
+      }
+      .menu .menu_flexbox .menu_item_flex_item img:hover {
+        margin: 0px;
+        border: 4px solid orange;
+      }
+
+      .reservation {
+        padding: 5vh 0px;
+      }
+      .reservation h1 {
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+      .reservation .reservation_form {
+        width: 80%;
+        padding: 10px;
+        border: 4px solid #333;
+        margin: 0 auto;
+        margin-top: 3vh;
+        display: flex;
+        flex-direction: column;
+        background-image: linear-gradient(black, #333, black);
+        color: white;
+      }
+      .reservation .reservation_form .form_group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .reservation .reservation_form .form_group label {
+        flex: 1;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      .reservation .reservation_form .form_group input, .reservation .reservation_form .form_group textarea {
+        width: 80%;
+        height: 30px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        font-size: 18px;
+        font-family: inherit;
+        font-size: inherit;
+        float: left;
+      }
+      .reservation .reservation_form .form_group input:hover, .reservation .reservation_form .form_group textarea:hover {
+        box-shadow: 0px 0px 15px 5px gray;
+        cursor: pointer;
+      }
+      .reservation .reservation_form .form_group textarea {
+        height: 200px;
+      }
+      .reservation .reservation_form .form_group .input_date, .reservation .reservation_form .form_group .input_time {
+        width: calc(80% + 2 * 12px + 2 * 1px);
+        display: flex;
+        flex-direction: column;
+      }
+      .reservation .reservation_form .form_group .input_date select, .reservation .reservation_form .form_group .input_time select {
+        width: 100%;
+        height: 40px;
+        border: 1px solid #ccc;
+        font-size: 15px;
+        padding: 5px;
+        margin-bottom: 20px;
+      }
+      .reservation .reservation_form .form_group .input_date select:hover, .reservation .reservation_form .form_group .input_time select:hover {
+        box-shadow: 0px 0px 15px 5px gray;
+        cursor: pointer;
+      }
+      .reservation .reservation_form .button_div {
+        margin: 0 auto;
+        margin-bottom: 20px;
+      }
+      .reservation .reservation_form .button_div button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 50px;
+        padding: 20px;
+        border: 2px solid black;
+        font-size: 30px;
+        background-color: white;
+      }
+
+      .contact {
+        padding: 2vw;
+        padding-top: 4vh;
+        margin-bottom: 10vh;
+      }
+      .contact .contact_container {
+        width: calc(90% - 2 * 20px);
+        padding: 20px;
+        margin: 0 auto;
+        margin-top: 5vh;
+        background-color: #333;
+        color: white;
+        border: 5px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .contact .contact_container h1 {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .contact .contact_container .contact_content .info_hours {
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
+      }
+      .contact .contact_container .contact_content .info_hours .info {
+        flex: 1;
+      }
+      .contact .contact_container .contact_content .info_hours .info p {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: min(4vw, 16px);
+      }
+      .contact .contact_container .contact_content .info_hours .hours p {
+        font-size: min(4vw, 16px);
+        font-weight: bold;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+      .contact .contact_container .contact_content .info_hours .hours table {
+        margin: 0 auto;
+        margin-bottom: 20px;
+      }
+      .contact .contact_container .contact_content .info_hours .hours table th, .contact .contact_container .contact_content .info_hours .hours table td {
+        padding: 1vh 0px;
+        font-size: min(4vw, 16px);
+      }
+      .contact .contact_container .contact_content .info_hours .hours table td {
+        text-align: right;
+      }
+      .contact .contact_container .contact_content .info_hours .hours table th {
+        text-align: left;
+        padding-right: 1vw;
+      }
+      .contact .contact_container .contact_content .maps {
+        flex: 1;
+        width: 100%;
+      }
+      .contact .contact_container .contact_content .maps iframe {
+        width: 100%;
+        height: 500px;
+        border: none;
+        margin-bottom: 20px;
+      }
+
+      .final {
+        width: calc(100% - 60px);
+        background-color: black;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #FF8C00;
+      }
+      .final p {
+        margin-bottom: 20px;
+        font-size: min(4vw, 40px);
+      }
+      .final .jinkuaizi p {
+        text-align: center;
+        font-size: min(4vw, 15px);
+        color: #FF8C00;
+      }
+      .final .jinkuaizi p a:hover {
+        color: #FF8C00;
+      }
+      .final .jinkuaizi p a:visited {
+        color: #FF8C00;
+      }
+      .final .jinkuaizi p a:active {
+        color: #FF8C00;
+      }
+      .final .jinkuaizi p a:link {
+        color: #FF8C00;
+      }
+    }
+
+    /*# sourceMappingURL=style.css.map */
+
+  </style>
+</head>
+<body>
+
+
+  <!-- navigation bar -->
+  <section>
+    <div class="nav_bar_back"></div>
+    <div class="nav_bar_front">
+      <div class="nav_bar_logo_and_toggle">
+        <div class="nav_logo">
+          <a href="#home_internal_link"><img src=""></a>
+        </div>
+        <div class="nav_menu_toggle">
+          <img onclick="toggle_mobile_menu()" src="">
+        </div>
+      </div>
+      <div id = "nav_links">
+        <div onclick="toggle_mobile_menu()"><a href="#home_internal_link">Home</a></div>
+        <div onclick="toggle_mobile_menu()"><a href="#menu_internal_link">Gallery</a></div>
+        <div onclick="toggle_mobile_menu()"><a href="#contact_internal_link">Contact</a></div>
+        <div onclick="toggle_mobile_menu()"><a  href="login page.HTML">Login</a></div>
+      </div>
+    </div>
+    <div class="progress_bar_back"></div>
+    <div id="progress_bar_front"></div>
+  </section>
+
+
+  <div class = 'messages_div' >
+    <div class = 'message_text'>FOOD CITY</div>
+  </div>
+
+  <!-- home wallpaper -->
+  <section>
+    <div id = 'home_internal_link'>
+    </div>
+    <div class="home">
+      <img id = 'home_image' src="">
+      <div class="center_text">
+        <div class="typewriter">
+          <div class="typewriter-text">
+            FOOD CITY
+          </div>
+        </div>
+      </div>
+      <div id = 'dots' class = "dots">
+        <button onclick="changeImage(0)" type="button" id="button0"></button>
+        <button onclick="changeImage(1)" type="button" id="button1"></button>
+        <button onclick="changeImage(2)" type="button" id="button2"></button>
+        <button onclick="changeImage(3)" type="button" id="button3"></button>
+        <button onclick="changeImage(4)" type="button" id="button4"></button>
+        <button onclick="changeImage(5)" type="button" id="button5"></button>
+        <button onclick="changeImage(6)" type="button" id="button6"></button>
+        <button onclick="changeImage(7)" type="button" id="button7"></button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- menu -->
+  <section >
+    <div id = 'menu_internal_link'>
+    </div>
+    <div class="menu">
+      <div id = 'menu_flexbox' class="menu_flexbox section hidden">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- reservation -->
+  
+  <!-- contact -->
+  <section>
+    <div id = 'contact_internal_link'>
+    </div>
+    <div class="contact">
+      <div class="contact_container section hidden">
+        <h1>Contact </h1>
+        <div class="contact_content">
+          <div class="info_hours">
+            <div class="info">
+              <p><b>Phone:</b> 6374352607</p>
+              <p><b>Email:</b> foodreservation@gmail.com</p>
+              <p><b>Address:</b> SECE</p>
+            </div>
+            <div class="hours">
+              <p>Active Hours</p>
+              <table>
+                <tr>
+                  <th>Sunday</th>
+                  <td>9:00 am - 2:00 pm</td>
+                </tr>
+                <tr>
+                  <th>Monday</th>
+                  <td>9:00 am - 2:00 pm</td>
+                </tr>
+                <tr>
+                  <th>Tuesday</th>
+                  <td>9:00 am - 2:00 pm</td>
+                </tr>
+                <tr>
+                  <th>Wednesday</th>
+                  <td>9:00 am - 2:00 pm</td>
+                </tr>
+                <tr>
+                  <th>Thursday</th>
+                  <td>9:00 am - 2:00 pm</td>
+                </tr>
+                <tr>
+                  <th>Friday</th>
+                  <td>9:00 am - 2:00 pm</td>
+                </tr>
+                <tr>
+                  <th>Saturday</th>
+                  <td>9:00 am - 2:00 pm</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+
+          <section >
+            <div id = 'login_internal_link'>
+            </div>
+            <div class="form_group section hidden">
+              <a href="login page.html">login</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="final">
+      <p>We know it's amazing, but that's not all!</p>
+      <div>
+        <p>To Make a Reservation  <a href="login page.HTML">Click Here</a></p>
+      </div>
+    </div>
+  </section>
+  <script>
+    //toggle nav_bar
+    function toggle_mobile_menu(){
+      if (window.innerWidth<1100){
+        var x = document.getElementById("nav_links");
+        if (x.style.display == "flex") {
+          x.style.display = "none";
+        }
+        else{
+          x.style.display = "flex";
+        }
+      }
+    }
+
+    //removes nav_mobile_links upon screen resize to full screen
+    prev_width = window.innerWidth
+    curr_width = window.innerWidth
+    $(window).resize(function() {
+      curr_width = window.innerWidth
+      if (window.innerWidth>1100){
+        var x = document.getElementById("nav_links");
+        x.style.display = "flex";
+      }
+      if (curr_width<1100 && prev_width>=1100){
+        var x = document.getElementById("nav_links");
+        x.style.display = "none";
+      }
+      prev_width = window.innerWidth
+    });
+
+    $(".nav_bar_front").animate({left: "0%"}, 1000);
+
+
+    $(".center_text").slideUp(0).delay(1000).slideDown(1000);
+
+    setTimeout(function(){
+      $(".typewriter-text").css("width", "100%");
+    }, 8000);
+
+
+
+    //progress bar
+    window.onscroll = function() {progressFunction()};
+    function progressFunction() {
+      var windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (windowScroll / height) * 100;
+      document.getElementById("progress_bar_front").style.width = scrolled + "%";
+    }
+
+
+
+    function isVisible(element) {
+      let elementBox = element.getBoundingClientRect();
+      distanceFromTop = -200;
+      if(elementBox.top - window.innerHeight < distanceFromTop) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function scanDocument() {
+      let sectionList = document.querySelectorAll('.hidden');
+      sectionList.forEach(function(section) {
+        if(isVisible(section)) {
+          section.classList.remove('hidden');
+        };
+      });
+    }
+
+
+    document.addEventListener("scroll", scanDocument);
+
+
+
+    //home
+    var wallpaper_images = [
+    "https://bit.ly/3Bvcbv5",
+    "https://bit.ly/3zi1LOu",
+    "https://bit.ly/3zqi7oj",
+    "https://bit.ly/3Bjqov0",
+    "https://bit.ly/2XWrpKR",
+    "https://bit.ly/2Y2MOSM",
+    "https://bit.ly/3mD4kXS",
+    "https://bit.ly/3sOtjJ0",
+    ];
+
+    var index = 0;
+
+    function changeImage(currImage){
+      document.getElementById("home_image").src = wallpaper_images[currImage];
+      for (let i =0; i<wallpaper_images.length; i++){
+        var x = document.getElementById("button"+i);
+        if (i==currImage){
+          x.style.backgroundColor = '#333';
+        }
+        else{
+          x.style.backgroundColor = 'white';
+        }
+      }
+      index = currImage;
+    }
+    changeImage(index);
+
+    var myTimer = setInterval(function(){
+      index = (index+1)%wallpaper_images.length;
+      changeImage(index);
+    }, 6000);
+
+
+
+
+
+
+
+
+
+    //menu items
+    menu_images = [
+    "https://i.ibb.co/1ZTZk5k/eating-colorful-vietnamese-pho-bo-with-chopsticks-from-top-down-view.jpg",
+    "https://i.ibb.co/MDY5k5d/meals-delicious-fried-tofu.jpg",
+    "https://i.ibb.co/5BKs9TN/meat-dinner-stuffing-594814.jpg",
+    "https://i.ibb.co/VML5yvj/meat-4k-new-hd-wallpaper-preview.jpg",
+    "https://i.ibb.co/3Bn5mPF/meat-food-steak-wood-wallpaper-preview.jpg",
+    "https://i.ibb.co/fQYc3SZ/omar-krab-moreprodukty.jpg",
+    "https://i.ibb.co/Jvqyd0n/photo-1607857530521-53448b220fe8.jpg",
+    "https://i.ibb.co/WGcMTXj/Roast-Chicken-Cutting-board-545758-1280x958.jpg",
+    "https://i.ibb.co/M7KkJqR/s3JPG.jpg",
+    "https://i.ibb.co/JHY4KMN/shrimp-food-hd-wallpaper-73467-76105-hd-wallpapers.jpg",
+    "https://i.ibb.co/27BHjTt/thumb-1920-439410.jpg",
+    "https://i.ibb.co/dBN7vsn/wp2199011.jpg",
+    "https://i.ibb.co/SVgZwZ6/wp3074963.jpg",
+    "https://i.ibb.co/V2K9MLs/opt-aboutcom-coeus-resources-content-migration-serious-eats-seriouseatscom-2014-06-2021-02-12-Lo-Mei.jpg",
+    "https://i.ibb.co/cFkJ8pk/JAY1124.jpg",
+    "https://i.ibb.co/VJ9VV7J/JAY1219.jpg",
+    "https://i.ibb.co/HhXzCr3/JAY1284.jpg",
+    "https://i.ibb.co/xJGg59Q/JAY1300.jpg",
+    "https://i.ibb.co/rsXz4gG/JAY1358.jpg",
+    "https://i.ibb.co/S5tBcSS/JAY1466.jpg",
+    "https://i.ibb.co/3d1tg0v/JAY1533.jpg",
+    "https://i.ibb.co/bm2GwbD/JAY1558.jpg",
+    "https://i.ibb.co/2Ftz3mm/JAY1582.jpg",
+    "https://i.ibb.co/pRxKry0/JAY1604.jpg",
+    /*
+    "https://i.ibb.co/FhvKPnm/JAY7486.jpg",
+    "https://i.ibb.co/7y5yhh2/JAY7488.jpg",
+    "https://i.ibb.co/cwRgWDP/JAY7521.jpg",
+    "https://i.ibb.co/0t8YJtc/JAY7530-2.jpg",
+    "https://i.ibb.co/vDJsHM1/JAY7539.jpg",
+    "https://i.ibb.co/cQNn27k/JAY7555.jpg",
+    "https://i.ibb.co/QMGhMM1/JAY7579.jpg",
+    "https://i.ibb.co/s3dcZPX/JAY7587.jpg",
+    "https://i.ibb.co/rmzdVks/JAY7601.jpg",
+    "https://i.ibb.co/2kfKrdd/128-1289310-food-sweet-dessert-yummy-ice-cream-images-ice.jpg",
+    "https://i.ibb.co/3YTy05Y/759f0821786dab26d986f35d50babd3d.jpg",
+    "https://i.ibb.co/1fP7c1t/412959.jpg",
+    "https://i.ibb.co/BgxjX97/2175101.jpg",
+    "https://i.ibb.co/zGhXcX7/2359955.jpg",
+    "https://i.ibb.co/RHJfwPr/2854501.jpg",
+    "https://i.ibb.co/807PL2z/beef-spring-rolls-602858.jpg",
+    "https://i.ibb.co/6gqk93c/bowl-chopsticks-close-up-cuisine.jpg",
+    "https://i.ibb.co/JBGLY8x/dish-tentacles-octopus.jpg",
+    "https://i.ibb.co/JpF7ZQN/e18b2168658aff8ed64643c3027f2ca1.jpg",
+    "https://i.ibb.co/fNp8jDd/Food-french-fries-tomatoes-5120x2880.jpg",
+    "https://i.ibb.co/qgh6hHs/food-kitchen-dish-sushi-wallpaper-preview.jpg",
+    "https://i.ibb.co/PGR5NHg/grilled-lobster-tail-004-1553897798.jpg",
+    "https://i.ibb.co/XkZ25GN/vietnamese-pho-with-spicy-sriracha-sauce-shot-top-down.jpg",
+    "https://i.ibb.co/9vR33xz/Peking-duck-Chinese-food.jpg"*/
+    ];
+
+    for (let i =0; i<menu_images.length; i++){
+      var div = document.createElement("div");
+      div.className = ("menu_item_flex_item section hidden");
+      var img = document.createElement("img");
+      img.src = menu_images[i];
+      div.append(img);
+      $("#menu_flexbox").append(div);
+    }
+
+  </script>
+</body>
+</html>
